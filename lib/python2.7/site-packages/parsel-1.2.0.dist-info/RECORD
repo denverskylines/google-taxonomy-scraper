@@ -1,0 +1,15 @@
+parsel/__init__.py,sha256=d0e8rDbTJhl6HdQaJHy-X8QeaEiOcFmFe1eS36KP1Lo,284
+parsel/csstranslator.py,sha256=YRTpiQ4GunT-l3IUHIwzlw5Um6rTG61XrJCSs2qEJCc,3670
+parsel/selector.py,sha256=mNzuQogBsaupMGlGLwaRYRwBg90XcK9byv1FmCiKErY,12414
+parsel/utils.py,sha256=djEWx8qwTENsqQ-U7oP7tuy1WLw-pkJP5gCj4stHKsc,2414
+parsel-1.2.0.dist-info/DESCRIPTION.rst,sha256=gBmRCM1mbS3L5R4cNWVkYiHOz2YQBgRg4CdY3opZWTg,3715
+parsel-1.2.0.dist-info/METADATA,sha256=xHKBkFHdRz9FJERvhW524oFR4Mg86Jg84fZjWhdqU7M,4959
+parsel-1.2.0.dist-info/RECORD,,
+parsel-1.2.0.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+parsel-1.2.0.dist-info/metadata.json,sha256=el2NVSM93CarqNUcNkwKekku_7Gl9wTPrtqwvJOhCcU,1355
+parsel-1.2.0.dist-info/top_level.txt,sha256=djxZw3B9hpuDSWmC-9A8vEn2YaYMBNgv8v4sBhivK7A,7
+parsel-1.2.0.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+parsel/csstranslator.pyc,,
+parsel/utils.pyc,,
+parsel/__init__.pyc,,
+parsel/selector.pyc,,

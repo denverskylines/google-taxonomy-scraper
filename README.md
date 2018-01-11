@@ -200,15 +200,42 @@ https://scrapy.org
 
 We highly reccomend you run Google Taxonomy Scraper in a virtualenv
 
-### The quick way::
+### The quick way:
+
+#### sh ubuntu_install.sh
+#### sh mac_install.sh
+
+Note: mac install requires homebrew
+
+Manual Ubuntu Linux installation: 
 
 ```
     sudo apt-get install mongodb
     pip install virtualenv
     virtualenv google-taxonomy-scraper
     cd google-taxonomy-scraper
+    git clone git@github.com:duasamericas/duasamericas.github.io.git .
     source ./bin/activate 
     pip install scrapy 
+```
+
+Manual Mac OSX installation: 
+
+```
+    brew install mongodb
+    pip install virtualenv
+    virtualenv google-taxonomy-scraper
+    cd google-taxonomy-scraper
+    git clone git@github.com:duasamericas/duasamericas.github.io.git .
+    source ./bin/activate 
+    pip install scrapy 
+```
+
+Manual Windows installation: 
+
+```
+    Download Ubuntu or buy a mac and follow the above instructions. ;). Just kidding but yeah... 
+    Install mongo, virtualenv, create a virtualenv activate it and install scrapy, clone the project and go. 
 ```
     
 Scrapy requires certain libraries to be installed on the system for information on 

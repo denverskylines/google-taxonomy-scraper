@@ -14,6 +14,7 @@ into Google's Taxonomy for use on Google Shopping.
 Match yours or any e-commerce sites categories to corrosponding google categories 
 and place them into cats.csv in the following format:
 
+```
 Shoes;187
 Dresses;2271
 Clothing;1604
@@ -31,6 +32,7 @@ Jackets;203
 Coats;203
 Swimwear;211
 Clutch;6551
+```
 
 then
 
@@ -98,19 +100,19 @@ class FeedItem(scrapy.Item):
 from scrapy.spiders import SitemapSpider
 from ..items import FeedItem
 import csv, re
-# -*- import the correct spider from scrapy.spiders -*-
+# Build class from scrapy.spiders
 class NetAPorterSpider(SitemapSpider):
-    # -*- give the crawler a name -*-
+    #  give the crawler a name 
     name = "net-a-porter"
-    # -*- provide path to the sitemap xml -*-
+    # provide path to the sitemap xml 
     sitemap_urls = ['https://www.net-a-porter.com/us.en.sitemap2.xml']
     
-    # -*- provide the rules (if the xml contains the string product the retrieve the html and parse it -*-
+    # provide the rules (if the xml contains the string product the retrieve the html and parse it 
     sitemap_rules = [
         ('product', 'parse_product')
     ]
 
-    # -*- provide the xpath or css to each item in FeedItem which is the model created in items.py -*-
+    # provide the xpath or css to each item in FeedItem which is the model created in items.py
     def parse_product(self,response):
         if 'http://schema.org/InStock' in ''.join(response.xpath('//link[@itemprop="availability"]//@href').extract()):
             item = FeedItem()
@@ -131,7 +133,7 @@ class NetAPorterSpider(SitemapSpider):
                                             response.xpath('//ul[@class="font-list-copy"]//li//text()').extract()
                                             )))
             
-            # -*- extract the categories from the html and use to_google_taxonomy to convert to google taxonomy -*-
+            # extract the categories from the html and use to_google_taxonomy to convert to google taxonomy 
             cats = response.xpath('//meta[@class="product-data"]/@data-breadcrumb-keys').extract()[0]\
                 .lower()\
                 .replace(' ', '')\
@@ -157,14 +159,12 @@ class NetAPorterSpider(SitemapSpider):
         else:
             pass
 ```
-Scraped from <200 https://www.net-a-porter.com/us/en/product/516570/Ancient_Greek_Sandals/clio-leather-sandals>
 
 JSON output -> configured to mongodb but can be easily swapped out in middlewares.py...
 
-```
 Scraped from <200 https://www.net-a-porter.com/us/en/product/516570/Ancient_Greek_Sandals/clio-leather-sandals>
 
-
+```
 {"brand": "Ancient Greek Sandals",
  "color": "Heel measures approximately 10mm/ 0.5 inches",
  "description": "Heel measures approximately 10mm/ 0.5 inches Black leather Buckle-fastening slingback strap - - Fits true to size, take your normal size- Only available in full sizes, go up to the nearest whole size if you take a half size- Italian sizing- Narrow at the top of the foot- Heel measures approximately 10mm/ 0.5 inches- Black leather- Buckle-fastening slingback strap",

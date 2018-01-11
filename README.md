@@ -1,6 +1,9 @@
 # Google Taxonomy Scraper
 ### Duas Americas Group, Inc
 
+This source is open and provided to the community to use freely. 
+By using this code you agree to the terms in license.txt
+
 ## Overview
 
 Google taxonomy scraper is used to crawl e-commerce websites and extract structured 

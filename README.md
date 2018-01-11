@@ -1,5 +1,7 @@
 # Google Taxonomy Scraper
 ### Duas Americas Group, Inc
+##### North: Boca Raton, FL USA  - Aslan Varoqua, CEO
+##### South: Araras, São Paulo, BR Daniel Vieira, COO
 
 This source is open and can be used freely and subject only to the terms in LICENSE (MIT)
 

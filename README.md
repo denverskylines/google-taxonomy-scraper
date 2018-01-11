@@ -40,6 +40,5 @@ https://doc.scrapy.org/en/latest/intro/install.html
 
 
 ## Commercial Support
-==================
 
 support@duasamericasgroup.com

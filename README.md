@@ -1,8 +1,7 @@
 # Google Taxonomy Scraper
 ### Duas Americas Group, Inc
 
-This source is open and provided to the community to use freely. 
-By using this code you agree to the terms in license.txt
+This source is open and can be used freely and subject only to the terms in license.txt (MIT)
 
 ## Overview
 

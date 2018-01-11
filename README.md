@@ -55,15 +55,26 @@ import scrapy
 
 # -*- This represents a JSON Object that will enter the database -*-
 class FeedItem(scrapy.Item):
-    #method to convert categories in any format to google's taxonomy. 
+    # formats a category into normalized format
+    # @parameter cats: String
+    # @returns price: Float
     def to_google_taxonomy(cats):
         with open('./cats.csv', 'rb') as csvfile:
             catreader = csv.reader(csvfile, delimiter=';')
-
+            
+            google_taxonomy_code = None
+            
             for row in catreader:
                 if row[0].lower() in cats:
-                    item['google_product_category'] = row[1]
-                        
+                    google_taxonomy_code =  row[1]
+                    
+            return google_taxonomy_code
+                    
+    # formats price into normalized format
+    # @parameter price: String or Int 
+    # @returns price: Float
+    def parse_price(price):
+        return "{0:.2f}".format(float(price) / 100.00)
                         
     product_id = scrapy.Field()
     store_id = scrapy.Field()
@@ -127,9 +138,6 @@ class NetAPorterSpider(SitemapSpider):
                 .split('/')
                 
             item['google_product_category'] = item.to_google_taxonomy(cats)
-
-            def parse_price(price):
-                return "{0:.2f}".format(float(price) / 100.00)
 
             item['price'] = item.parse_price(response.xpath('//meta[@class="product-data"]/@data-price').extract()[0])
 

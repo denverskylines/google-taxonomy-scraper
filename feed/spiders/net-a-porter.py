@@ -2,21 +2,19 @@
 from scrapy.spiders import SitemapSpider
 from ..items import FeedItem
 import csv, re
-
-# ... scrape net-a-porter sitemap ...
-# @param @SitemapSpider Object the spider from scrapy.spiders
+# Build class from scrapy.spiders
 class NetAPorterSpider(SitemapSpider):
-    first = "{&quot;size&quot;:&quot;"
-    last = "&quot;,&quot;stock&quot;:&quot;In_Stock"
+    #  give the crawler a name 
     name = "net-a-porter"
-    sitemap_urls = ['https://www.net-a-porter.com/us.en.sitemap6.xml']
+    # provide path to the sitemap xml 
+    sitemap_urls = ['https://www.net-a-porter.com/us.en.sitemap2.xml']
+    
+    # provide the rules (if the xml contains the string product the retrieve the html and parse it 
     sitemap_rules = [
         ('product', 'parse_product')
     ]
 
-
-    # ... scrape product from site map ...
-    #  @param response Object html response object
+    # provide the xpath or css to each item in FeedItem which is the model created in items.py
     def parse_product(self,response):
         if 'http://schema.org/InStock' in ''.join(response.xpath('//link[@itemprop="availability"]//@href').extract()):
             item = FeedItem()
@@ -36,48 +34,22 @@ class NetAPorterSpider(SitemapSpider):
                                   + ''.join(filter(None, map((lambda x: x.strip()),
                                             response.xpath('//ul[@class="font-list-copy"]//li//text()').extract()
                                             )))
-
-            response.xpath('//ul[@class="font-list-copy"]//li//text()').extract()
-
+            
+            # extract the categories from the html and use to_google_taxonomy to convert to google taxonomy 
             cats = response.xpath('//meta[@class="product-data"]/@data-breadcrumb-keys').extract()[0]\
                 .lower()\
                 .replace(' ', '')\
                 .split('/')
+                
+            item['google_product_category'] = item.to_google_taxonomy(cats)
 
-            for cat in cats:
-                cat.lower()
-
-            def parse_price(price):
-                return "{0:.2f}".format(float(price) / 100.00)
-
-            price = response.xpath('//meta[@class="product-data"]/@data-price').extract()[0]
-
-            item['price'] = parse_price(price)
-
-            with open('./cats.csv', 'rb') as csvfile:
-                catreader = csv.reader(csvfile, delimiter=';')
-
-                for row in catreader:
-                    if row[0].lower() in cats:
-                        item['google_product_category'] = row[1]
+            item['price'] = item.parse_price(response.xpath('//meta[@class="product-data"]/@data-price').extract()[0])
 
             item['brand'] = ''.join(response.xpath('//span[@itemprop="name"]//text()').extract())
 
             item['image_link'] = 'http:' + ''.join(response.xpath('//meta[@itemprop="image"]/@content').extract())
 
             item['gender'] = "female"
-
-            sizes = ''.join(response.xpath('//*[@label="Choose your size"]/@options').extract())
-
-            size = None
-
-            if sizes:
-                size = re.search(self.first + '(.*)', self.last)
-            else:
-                size = "N.A"
-
-            if size:
-                item['size'] = size
 
             item['color'] = ''.join(response.xpath('//*[@name="Editor\'s Notes"]//ul/li[1]/text()')
                 .extract())\

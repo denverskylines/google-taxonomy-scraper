@@ -13,7 +13,7 @@ into Google's Taxonomy for use on Google Shopping.
 
 ## Usage
 
-Match yours or any e-commerce sites categories to corrosponding google categories 
+Match yours or any e-commerce sites categories to corresponding google categories 
 and place them into cats.csv in the following format:
 
 ```

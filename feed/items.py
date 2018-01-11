@@ -24,5 +24,5 @@ class FeedItem(scrapy.Item):
     gender = scrapy.Field()
 
 
-    product_id,store_id,brand,image_link,title,link,price,google_product_category,color,size,description,gender = scrapy.Field()
+   # product_id,store_id,brand,image_link,title,link,price,google_product_category,color,size,description,gender = scrapy.Field()
 

@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-from scrapy.spiders import SitemapSpider
+
+m scrapy.spiders import SitemapSpider
 from ..items import FeedItem
 import csv, re
 
@@ -7,7 +7,7 @@ class NetAPorterSpider(SitemapSpider):
     first = "{&quot;size&quot;:&quot;"
     last = "&quot;,&quot;stock&quot;:&quot;In_Stock"
     name = "net-a-porter"
-    sitemap_urls = ['https://www.net-a-porter.com/us.en.sitemap3.xml']
+    sitemap_urls = ['https://www.net-a-porter.com/us.en.sitemap2.xml']
     sitemap_rules = [
         ('product', 'parse_product')
     ]

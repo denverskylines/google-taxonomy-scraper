@@ -3,17 +3,20 @@ from scrapy.spiders import SitemapSpider
 from ..items import FeedItem
 import csv, re
 
+# ... scrape net-a-porter sitemap ...
+# @param @SitemapSpider Object the spider from scrapy.spiders
 class NetAPorterSpider(SitemapSpider):
     first = "{&quot;size&quot;:&quot;"
     last = "&quot;,&quot;stock&quot;:&quot;In_Stock"
     name = "net-a-porter"
-    sitemap_urls = ['https://www.net-a-porter.com/us.en.sitemap3.xml']
+    sitemap_urls = ['https://www.net-a-porter.com/us.en.sitemap6.xml']
     sitemap_rules = [
         ('product', 'parse_product')
     ]
 
 
-
+    # ... scrape product from site map ...
+    #  @param response Object html response object
     def parse_product(self,response):
         if 'http://schema.org/InStock' in ''.join(response.xpath('//link[@itemprop="availability"]//@href').extract()):
             item = FeedItem()

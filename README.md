@@ -1,6 +1,6 @@
 # Google Taxonomy Scraper
 
-======
+
 ## Overview
 ========
 

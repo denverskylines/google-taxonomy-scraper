@@ -202,10 +202,10 @@ We highly reccomend you run Google Taxonomy Scraper in a virtualenv
 
 ### The quick way:
 
-#### sh ubuntu_install.sh
+#### sudo sh ubuntu_install.sh
 #### sh mac_install.sh
 
-Note: mac install requires homebrew
+Note: mac install requires homebrew, and remove mongodb from install script if it's already installed. 
 
 Manual Ubuntu Linux installation: 
 
@@ -214,7 +214,7 @@ Manual Ubuntu Linux installation:
     pip install virtualenv
     virtualenv google-taxonomy-scraper
     cd google-taxonomy-scraper
-    git clone git@github.com:duasamericas/duasamericas.github.io.git .
+    git clone git@github.com:duasamericas/google-taxonomy-scraper.git .
     source ./bin/activate 
     pip install scrapy 
 ```
@@ -226,7 +226,7 @@ Manual Mac OSX installation:
     pip install virtualenv
     virtualenv google-taxonomy-scraper
     cd google-taxonomy-scraper
-    git clone git@github.com:duasamericas/duasamericas.github.io.git .
+    git clone git@github.com:duasamericas/google-taxonomy-scraper.git .
     source ./bin/activate 
     pip install scrapy 
 ```
